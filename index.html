@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Simran 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  max-width: 420px;
+  width: 100%;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: white;
+  font-size: 2.1rem;
+}
+
+p { color: white; min-height: 40px; }
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+button {
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.primary { background: #ff4d6d; color: white; }
+.secondary { background: white; color: #ff4d6d; }
+
+.hidden { display: none; }
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: float 3s linear forwards;
+}
+
+@keyframes float {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-150px); }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="pop" src="https://assets.mixkit.co/sfx/preview/mixkit-game-ball-tap-2073.mp3"></audio>
+<audio id="win" src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sweep-game-trophy-257.mp3"></audio>
+
+<div class="container">
+
+<!-- SCREEN 1 -->
+<div id="s1">
+  <h1>Simran, do you love me? 💖</h1>
+  <p>Be honest 😌</p>
+  <div class="buttons">
+    <button class="primary" onclick="next()">Yes 💕</button>
+    <button class="secondary" onclick="tease()">No 🙄</button>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="s2" class="hidden">
+  <h1>How much though? 👀</h1>
+  <p>Choose wisely.</p>
+  <div class="buttons">
+    <button class="secondary" onclick="next()">A little 😌</button>
+    <button class="secondary" onclick="next()">A lot 💕</button>
+    <button class="primary" onclick="next()">More than I admit 😭</button>
+  </div>
+</div>
+
+<!-- SCREEN 3 -->
+<div id="s3" class="hidden">
+  <h1>Pick our vibe 🫶</h1>
+  <p>This one says a lot.</p>
+  <div class="buttons">
+    <button class="secondary" onclick="next()">Wholesome 💗</button>
+    <button class="secondary" onclick="next()">Chaotic 😈</button>
+    <button class="primary" onclick="next()">Both (obviously)</button>
+  </div>
+</div>
+
+<!-- SCREEN 4 -->
+<div id="s4" class="hidden">
+  <h1>Quick promise 🤞</h1>
+  <p>No backing out.</p>
+  <div class="buttons">
+    <button class="primary" onclick="next()">Always got your back 💖</button>
+    <button class="secondary" onclick="next()">Why is this even a question?</button>
+  </div>
+</div>
+
+<!-- SCREEN 5 -->
+<div id="s5" class="hidden">
+  <h1>One last thing…</h1>
+  <p>You’re stuck with me, okay?</p>
+  <div class="buttons">
+    <button class="primary" onclick="final()">Okay 😌</button>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div id="final" class="hidden">
+  <h1>Happy Valentine’s 💘</h1>
+  <p>
+    Simran Banjade,<br><br>
+
+    This isn’t about a day or a trend.  
+    It’s about how comfortable you feel,  
+    how natural the laughs are,  
+    and how some people just become home without trying 💖<br><br>
+
+    Thank you for being you —  
+    for the chaos, the calm, the honesty,  
+    and the moments that don’t need words.<br><br>
+
+    I’m really grateful for you.  
+    And yeah… you’re stuck with me now 😌🫶<br><br>
+
+    Always your bestie 💕
+  </p>
+</div>
+
+</div>
+
+<script>
+let screen = 1;
+const pop = document.getElementById("pop");
+const win = document.getElementById("win");
+
+function hideAll() {
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById("s" + i).classList.add("hidden");
+  }
+}
+
+function next() {
+  pop.play();
+  hideAll();
+  screen++;
+  document.getElementById("s" + screen).classList.remove("hidden");
+}
+
+function tease() {
+  pop.play();
+  alert("Nice try 😏");
+}
+
+function final() {
+  win.play();
+  hideAll();
+  document.getElementById("final").classList.remove("hidden");
+  hearts();
+}
+
+function hearts() {
+  for (let i = 0; i < 25; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = Math.random() > 0.5 ? "💖" : "💕";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.bottom = "0";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 3000);
+  }
+}
+</script>
+
+</body>
+</html>
